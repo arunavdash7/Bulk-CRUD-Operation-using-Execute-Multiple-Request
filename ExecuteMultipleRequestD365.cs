@@ -39,11 +39,7 @@ namespace ExecuteMultipleRequestD365
                 CrmServiceClient conn = new CrmServiceClient(connectionString);
                 // Cast the proxy client to the IOrganizationService interface.
                 _orgService = (IOrganizationService)conn.OrganizationWebProxyClient != null ? (IOrganizationService)conn.OrganizationWebProxyClient : (IOrganizationService)conn.OrganizationServiceProxy;
-                //Entity account = new Entity("account");
-                //account["name"] = "Dummy_Account_Test1";
-                //System.Guid _accountId = _orgService.Create(account);
-                //var client1 = new CrmServiceClient("RequireNewInstance=True; Url = https://lti12345678.crm.dynamics.com; Username = arunav@lti12345678.onmicrosoft.com; Password = Qwerty@123;  AuthType = Office365");
-                //_orgService = (IOrganizationService)client1.OrganizationWebProxyClient != null ? (IOrganizationService)client1.OrganizationWebProxyClient : (IOrganizationService)client1.OrganizationServiceProxy;
+                
 
 
                 var fetchXML = @"<fetch version='1.0' output-format='xml-platform' mapping='logical' distinct='false'>
@@ -69,8 +65,7 @@ namespace ExecuteMultipleRequestD365
 
                 // get all the records > 5000
                 var totalRecords = GetTotalRecordsFetchXML(_orgService, fetchXML);
-                //conn.Dispose();
-                //Thread.Sleep(100);
+                
                 // split the lst of entity to child list
                 // specify the size of the batch i.e. 500 here
                 var lstlstEntity = SplitList(totalRecords, 500);
